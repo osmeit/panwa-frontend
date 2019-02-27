@@ -12,6 +12,8 @@ import { VacationComponent } from './_components/vacation/vacation.component';
 import { SickComponent } from './_components/sick/sick.component';
 import { UserComponent } from './_components/user/user.component';
 import { BranchComponent } from './_components/branch/branch.component';
+import { BranchDetailComponent } from './_components/branch-detail/branch-detail.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -25,12 +27,14 @@ import { BranchComponent } from './_components/branch/branch.component';
     VacationComponent,
     SickComponent,
     UserComponent,
-    BranchComponent
+    BranchComponent,
+    BranchDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

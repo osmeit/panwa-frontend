@@ -1,7 +1,37 @@
 <app-nav-menu>
-  
-<p>
-  branch works!
-</p>
+  <label for="typeahead-config">Suche eine filialle:</label>
+  <input id="typeahead-config" type="search" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" />
+  <div class="container-fluid" style="margin-top: 2em;" (click)="red();">
+    <div class="card">
+      <div class="card-header">
+        Klapperhof
+      </div>
+      <div class="card-body">
+        <div class="card" style="width: 18rem;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">im Klapperhof 52, 50670 Köln</li>
+            <li class="list-group-item">fesnetznumer</li>
+            <li class="list-group-item">gerade arbeitet olga</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" style="margin-top: 2em;" (click)="red();" (click)="red();">
+    <div class="card">
+      <div class="card-header">
+        Longerich
+      </div>
+      <div class="card-body">
+        <div class="card" style="width: 18rem;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">rommerkirschestr 52, 50765s Köln</li>
+            <li class="list-group-item">fesnetznumer</li>
+            <li class="list-group-item">gerade arbeitet pawel</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </app-nav-menu>

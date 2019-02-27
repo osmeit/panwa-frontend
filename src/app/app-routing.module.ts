@@ -8,6 +8,7 @@ import { VacationComponent } from './_components/vacation/vacation.component';
 import { SickComponent } from './_components/sick/sick.component';
 import { UserComponent } from './_components/user/user.component';
 import { BranchComponent } from './_components/branch/branch.component';
+import { BranchDetailComponent } from './_components/branch-detail/branch-detail.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'filiale',
     component: BranchComponent
+  },
+  {
+    path: 'filiale/id',
+    component: BranchDetailComponent
   },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }];
