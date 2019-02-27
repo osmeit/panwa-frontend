@@ -1,0 +1,77 @@
+<app-nav-menu>
+  <div class="container-fluid" style="margin-top: 2em;">
+    <div class="card">
+      <div class="card-header">
+        Urlaubszusammenfassung 2019
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Zeitraum</th>
+              <th scope="col">Beantragt am</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">15.02.2019 - 01.03.2019</th>   
+              <td>13.03.2019</td>
+              <td>genehmigt</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <th scope="row">15.04.2019 - 01.05.2019</th>   
+              <td>13.04.2019</td>
+              <td>nicht genehmigt</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <th scope="row">15.06.2019 - 01.07.2019</th>   
+              <td>13.05.2019</td>
+              <td>Antrag gestellt</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 2em;">
+      <div class="card-header">
+        Urlaubsantrag stellen
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Zeitraum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" [minDate]="minDate" [outsideDays]="collapsed">
+            </ngb-datepicker>
+            
+            <ng-template #t let-date let-focused="focused">
+              <span class="custom-day"
+                    [class.focused]="focused"
+                    [class.range]="isRange(date)"
+                    [class.faded]="isHovered(date) || isInside(date)"
+                    (mouseenter)="hoveredDate = date"
+                    (mouseleave)="hoveredDate = null">
+                {{ date.day }}
+              </span>
+            </ng-template>
+            <!--<hr>
+            
+            <pre>From: {{ fromDate | json }} </pre>
+            <pre>To: {{ toDate | json }} </pre>-->
+          </tbody>          
+          <tbody>            
+            <button type="submit" class="btn btn-primary">Anfragen</button>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</app-nav-menu>

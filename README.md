@@ -22,6 +22,72 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+(w) = worker
+(m) = moderator
+(a) = admin
+Seitenmap:
+NavMenu
+    PANWA             Name, Login/Logut
+
+NavMenu-Side
+Dashboard
+(w,m) Meine Fililaen (a) Fililaen
+(w,m) Urlaub beantragen (m,a) Urlaubs
+(w,m) Karnkschreibung vormerken (m,a) Karnkschreibungen
+(a) Benutzer
+
+Dashboard
+    (w,m) liste nächster sichten 
+    (m,a) liste leere sichten in den nächsten 2 wochen
+    (a) List with Urlaub, kk
+
+Hompage = LoginPage     
+    -> Login 
+        Succesfull -> Dashboard
+        Fail -> try again
+    -> Forgot Password 
+        Auth Controler - Forgot Password, send mail with link.
+
+(w,m) Meine Fililaen
+    Longerich
+        Allgemeine infos 
+        wochen ansicht
+            -> sichten eintragen
+            -> sichitwächsel beantragen
+            (m)-> worker von einer sichtit löschen
+            (m)-> worker andern
+        Gerade im urlab    
+(a) Fililaen
+    -> Filiale anlegen
+        Filialen erstellung
+    Longerich
+        Allgemeine infos 
+        -> Allgemeine infos bearbeiten
+        wochen ansicht
+        -> worker andern löschen
+
+(w,m) Urlaub
+    -> 2019
+        benutze tage, übriege tage, tage insgesamt
+        liste der urlaubs
+        -> urlaub beantragen
+(a) Urlaubs
+    -> 2019
+        Liste der urlabus ab jetzt
+
+(w,m) Karnkschreibung
+    Karnkschreibung vormerken
+(a) Karnkschreibungen
+    worker die jetzt krankgeschriben sind
+
+(a) Benutzer
+    Pawel
+        Liste krankgeschriben / Urlaubs
+        Nachste sichten
+        Wechselliste
+        Notizen
+        Vorvalle
+        Rolen
+        

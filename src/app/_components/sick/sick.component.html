@@ -1,0 +1,38 @@
+<app-nav-menu>
+  <div class="card" style="margin-top: 2em;">
+    <div class="card-header">
+      Krankschreibung vermerken
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Zeitraum</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" [minDate]="minDate" [outsideDays]="collapsed">
+          </ngb-datepicker>
+          
+          <ng-template #t let-date let-focused="focused">
+            <span class="custom-day"
+                  [class.focused]="focused"
+                  [class.range]="isRange(date)"
+                  [class.faded]="isHovered(date) || isInside(date)"
+                  (mouseenter)="hoveredDate = date"
+                  (mouseleave)="hoveredDate = null">
+              {{ date.day }}
+            </span>
+          </ng-template>
+          <!--<hr>
+          
+          <pre>From: {{ fromDate | json }} </pre>
+          <pre>To: {{ toDate | json }} </pre>-->
+        </tbody>          
+        <tbody>            
+          <button type="submit" class="btn btn-primary">Vermerken</button>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</app-nav-menu>
