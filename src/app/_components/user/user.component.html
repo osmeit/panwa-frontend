@@ -1,7 +1,5 @@
 <app-nav-menu>
-  
-<p>
-  user works!
-</p>
+  <label for="typeahead-config">Suche einen Mitarbeiter:</label>
+  <input id="typeahead-config" type="search" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" />
 
 </app-nav-menu>

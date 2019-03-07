@@ -7,17 +7,19 @@
         <div class="card">
           <h5 class="card-header text-center">PANWA - Planverwaltung</h5>
           <div class="card-body">
-            <div class="d-flex flex-column text-center">
-              <div class="p-2">
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Benutzername oder E-Mail">
-              </div>
-              <div class="p-2">
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Passwort">
-              </div>
-              <div class="p-2">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
+              <div class="d-flex flex-column text-center">
+                <div class="p-2">
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Benutzername oder E-Mail" formControlName="username">
+                </div>
+                <div class="p-2">
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Passwort" formControlName="password">
+                </div>
+                <div class="p-2">
                   <button type="submit" class="btn btn-outline-info btn-lg btn-block waves-effect">Einloggen</button>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

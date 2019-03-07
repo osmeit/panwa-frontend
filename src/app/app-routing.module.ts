@@ -9,12 +9,14 @@ import { SickComponent } from './_components/sick/sick.component';
 import { UserComponent } from './_components/user/user.component';
 import { BranchComponent } from './_components/branch/branch.component';
 import { BranchDetailComponent } from './_components/branch-detail/branch-detail.component';
+import { AuthGuard } from './_guards/auth.guard';
+import { Role } from './_models/role';
 
 const routes: Routes = [
   {
       path: '',
       component: HomeComponent,
-      //canActivate: [AuthGuard]
+      canActivate: [AuthGuard]
   },
   {
       path: 'login',
@@ -22,30 +24,35 @@ const routes: Routes = [
   },
   {
     path: 'profile_edit',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin, Role.Moderator] }
   },
   {
     path: 'urlaub',
-    component: VacationComponent
+    component: VacationComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'krank',
-    component: SickComponent
+    component: SickComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'benutzer',
-    component: UserComponent
+    component: UserComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'filiale',
-    component: BranchComponent
+    component: BranchComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'filiale/id',
-    component: BranchDetailComponent
-  },
-  // otherwise redirect to home
-  { path: '**', redirectTo: '' }];
+    component: BranchDetailComponent,
+    canActivate: [AuthGuard]
+  }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
