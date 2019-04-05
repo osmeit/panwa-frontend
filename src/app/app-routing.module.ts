@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -9,18 +10,27 @@ import { SickComponent } from './_components/sick/sick.component';
 import { UserComponent } from './_components/user/user.component';
 import { BranchComponent } from './_components/branch/branch.component';
 import { BranchDetailComponent } from './_components/branch-detail/branch-detail.component';
+import { UserAddComponent } from './_components/user-add/user-add.component';
+import { UserRegComponent } from './_components/user-reg/user-reg.component';
+import { UserInfoComponent } from './_components/user-info/user-info.component';
+
 import { AuthGuard } from './_guards/auth.guard';
 import { Role } from './_models/role';
+import { UserEditComponent } from './_components/user-edit/user-edit.component';
 
 const routes: Routes = [
   {
-      path: '',
-      component: HomeComponent,
-      canActivate: [AuthGuard]
+    path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
-      path: 'login',
-      component: LoginComponent
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register/:code',
+    component: UserRegComponent
   },
   {
     path: 'profile_edit',
@@ -42,6 +52,24 @@ const routes: Routes = [
     path: 'benutzer',
     component: UserComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'benutzer/add',
+    component: UserAddComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin, Role.Moderator] }
+  },
+  {
+    path: 'benutzer/edit/:id',
+    component: UserEditComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin, Role.Moderator] }
+  },
+  {
+    path: 'benutzer/:id',
+    component: UserInfoComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin, Role.Moderator] }
   },
   {
     path: 'filiale',

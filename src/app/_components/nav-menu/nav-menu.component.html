@@ -1,49 +1,48 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+  integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <div class="d-flex" id="wrapper">
 
 
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Planverwaltung </div>
-      <div class="list-group list-group-flush">
-        <a (click)="redirect('');" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a (click)="redirect('filiale');" class="list-group-item list-group-item-action bg-light">Meine Fililaen</a>
-        <a (click)="redirect('urlaub');" class="list-group-item list-group-item-action bg-light">Urlaub</a>
-        <a (click)="redirect('krank');" class="list-group-item list-group-item-action bg-light">Karnkschreibung</a>
-        <a (click)="redirect('benutzer');" class="list-group-item list-group-item-action bg-light">Benutzer</a>
-      </div>
+  <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">Planverwaltung </div>
+    <div class="list-group list-group-flush">
+      <a (click)="redirect('');" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+      <a (click)="redirect('filiale');" class="list-group-item list-group-item-action bg-light">Meine Fililaen</a>
+      <a (click)="redirect('urlaub');" class="list-group-item list-group-item-action bg-light">Urlaub</a>
+      <a (click)="redirect('krank');" class="list-group-item list-group-item-action bg-light">Karnkschreibung</a>
+      <a (click)="redirect('benutzer');" *ngIf="AuthLvl(1);" class="list-group-item list-group-item-action bg-light">Benutzer</a>
     </div>
-  
-    <div id="page-content-wrapper">
-  
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button (click)="redirect('');" class="btn btn-primary">PANWA</button>
-  
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-  
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-  
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle dropdown-menu-right" href="#" id="navbarDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Benutzer
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" (click)="redirect('login');">Einloggen</a>
-                <a class="dropdown-item" (click)="redirect('profile_edit');">Profil bearbeiten</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" (click)="logout('');">Abmelden</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-  
-      <div class="container-fluid">
-        <ng-content></ng-content>
+  </div>
+
+  <div id="page-content-wrapper">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <button (click)="redirect('');" class="btn btn-primary">PANWA</button>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle dropdown-menu-right" href="#" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{user.firstName}} {{user.lastName}}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" (click)="redirect('profile_edit');">Profil bearbeiten</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="logout('');">Abmelden</a>
+            </div>
+          </li>
+        </ul>
       </div>
+    </nav>
+
+    <div class="container-fluid">
+      <ng-content></ng-content>
     </div>
-  
-  
+  </div>

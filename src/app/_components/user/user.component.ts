@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
-import {debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, first } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/_services/user.service';
+import { User } from 'src/app/_models/User';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 
 const states = ['test', 'abcd', 'klapperhof', 'longerich', 'buchfrost', 'monheim'];
@@ -17,25 +20,30 @@ const states = ['test', 'abcd', 'klapperhof', 'longerich', 'buchfrost', 'monheim
 export class UserComponent implements OnInit {
 
   public model: any;
-
-  constructor(config: NgbTypeaheadConfig, private router: Router) {
-    // customize default values of typeaheads used by this component tree
+  users: User[] = [];
+  searchText;
+  constructor(config: NgbTypeaheadConfig, private router: Router, private userService: UserService) {
     config.showHint = true;
   }
 
-  search = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map(term => term.length < 2 ? []
-        : states.filter(v => v.toLowerCase().startsWith(term.toLocaleLowerCase())).splice(0, 10))
-    )
-
-  ngOnInit() {
+  ngOnInit() {       
+    this.userService.all().pipe(first()).subscribe(users => { 
+      this.users = users; 
+    }); 
   }
 
-  red() {
-    this.router.navigate(['filiale/id']);
+  redirect(path) {
+    this.router.navigate([path]);
+  }
+
+  changeActive(id){
+    this.userService.changeActive(id).subscribe(u => this.users.find(x => x.id == u.id).active = u.active);
+  }
+
+  resendEmail(id){
+    if(this.users.find(x => x.id == id).active) return;
+    
+    this.userService.resendEmail(id).subscribe(u => this.users.find(x => x.id == u.id).active = true);
   }
 
 }
