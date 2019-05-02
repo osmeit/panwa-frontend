@@ -1,37 +1,61 @@
 <app-nav-menu>
-  <label for="typeahead-config">Suche eine filialle:</label>
-  <input id="typeahead-config" type="search" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" />
-  <div class="container-fluid" style="margin-top: 2em;" (click)="red();">
-    <div class="card">
-      <div class="card-header">
-        Klapperhof
-      </div>
-      <div class="card-body">
-        <div class="card" style="width: 18rem;">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">im Klapperhof 52, 50670 Köln</li>
-            <li class="list-group-item">fesnetznumer</li>
-            <li class="list-group-item">gerade arbeitet olga</li>
-          </ul>
+  <div class="container" style="margin-top: 2em;">
+    <div class="row">
+      <div class="input-group">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+          placeholder="Suche nach Filialen" />
+        <div class="input-group-prepend">
+          <div *ngIf="AuthLvl(1)" (click)="redirect('filiale/add')" class="input-group-text">
+            <i class="fas fa-plus"></i>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="container-fluid" style="margin-top: 2em;" (click)="red();" (click)="red();">
-    <div class="card">
+  <div class="container-fluid" style="margin-top: 1em;">
+    <div class="card" *ngFor="let branch of (branches | filter: searchText)" style="margin-top: 1em;">
       <div class="card-header">
-        Longerich
+        <div class="row">
+          <div class="col-2" *ngIf="AuthLvl(1)">
+            <div class="input-group-prepend">
+              <div (click)="redirect('filiale/edit/' + branch.id)" class="input-group-text">
+                <i class="fas fa-edit"></i>
+              </div>
+              <div (click)="redirect('filiale/user-select/' + branch.id)" class="input-group-text">
+                <i class="fas fa-users"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-10">
+            {{ branch.name }}
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <div class="card" style="width: 18rem;">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">rommerkirschestr 52, 50765s Köln</li>
-            <li class="list-group-item">fesnetznumer</li>
-            <li class="list-group-item">gerade arbeitet pawel</li>
-          </ul>
+      <div class="card-deck" style="margin: 5px;">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Kontaktdaten</h5>
+            <p class="card-text" [innerHTML]="branch.addres"></p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Aufgaben</h5>
+            <p class="card-text" [innerHTML]="branch.obligations"></p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Kontaktperson</h5>
+            <p class="card-text">
+              {{ branch.contactUser.firstName }}
+              {{ branch.contactUser.lastName }} <br />
+              {{ branch.contactUser.email }}<br />
+              {{ branch.contactUser.phone }}<br />
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
 </app-nav-menu>

@@ -1,0 +1,35 @@
+<app-nav-menu>
+  <div class="container-fluid" style="margin-top: 2em;">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-6">
+            Mitarbeiter bei {{branch?.name}}
+          </div>
+          <div class="col-6">
+            <div class="text-right">
+              <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+          placeholder="Suche nach Mitarbeitern" style="margin-bottom: 1em;">
+        <div class="card-columns">
+          <div *ngFor="let user of users | filter:searchText">
+            <div (click)="changeWork(user);"
+              [className]="user.password == '1' ? 'card p-2 text-white bg-success' : 'card p-2 text-white bg-danger'"
+              *ngIf="checked || user.active">
+              <div class="card-body">
+                <h5 class="card-title">{{user.firstName}} {{user.lastName}}</h5>
+                <p class="card-text">{{user.email}}</p>
+                <p class="card-text" *ngIf="user.password == '1'">Arbeitet bereits bei {{branch.name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-nav-menu>

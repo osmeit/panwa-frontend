@@ -5,10 +5,6 @@ import {debounceTime, distinctUntilChanged, map, first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/_services/user.service';
 import { User } from 'src/app/_models/User';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
-
-
-const states = ['test', 'abcd', 'klapperhof', 'longerich', 'buchfrost', 'monheim'];
 
 
 @Component({
@@ -26,24 +22,23 @@ export class UserComponent implements OnInit {
     config.showHint = true;
   }
 
-  ngOnInit() {       
-    this.userService.all().pipe(first()).subscribe(users => { 
-      this.users = users; 
-    }); 
+  ngOnInit() {
+    this.userService.all().pipe(first()).subscribe(users => {
+      this.users = users;
+    });
   }
 
   redirect(path) {
     this.router.navigate([path]);
   }
 
-  changeActive(id){
-    this.userService.changeActive(id).subscribe(u => this.users.find(x => x.id == u.id).active = u.active);
+  changeActive(id) {
+    this.userService.changeActive(id).subscribe(u => this.users.find(x => x.id === u.id).active = u.active);
   }
 
-  resendEmail(id){
-    if(this.users.find(x => x.id == id).active) return;
-    
-    this.userService.resendEmail(id).subscribe(u => this.users.find(x => x.id == u.id).active = true);
+  resendEmail(id) {
+    if (this.users.find(x => x.id === id).active) { return; }
+    this.userService.resendEmail(id).subscribe(u => this.users.find(x => x.id === u.id).active = true);
   }
 
 }

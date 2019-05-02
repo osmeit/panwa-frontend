@@ -1,0 +1,46 @@
+<app-nav-menu>
+  <div class="container-fluid" style="margin-top: 2em;">
+    <form [formGroup]="branchAddForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label>Name</label>
+          <input type="email" class="form-control" id="name" formControlName="name"
+            placeholder="Name/Bezeichnung eingeben" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" required>
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name/Bezeichnung ist ein Pflichtfeld</div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Kontaktperson</label>
+          <p-autoComplete [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" formControlName="contactUser"
+            [suggestions]="filteredusers" (completeMethod)="filterUsersSingle($event)" [size]="30" [minLength]="1"
+            placeholder="Kontaktperson" field="password" [dropdown]="false"
+            [ngClass]="{ 'is-invalid': submitted && f.contactUser.errors }">
+          </p-autoComplete>
+          <div *ngIf="submitted && f.contactUser.errors" class="invalid-feedback">
+            <div>Kontaktperson ist ein Pflichtfeld</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label>Kontaktdaten</label>
+          <p-editor formControlName="addres" [style]="{'height':'320px'}"
+            [ngClass]="{ 'is-invalid': submitted && f.addres.errors }"></p-editor>
+          <div *ngIf="submitted && f.addres.errors" class="invalid-feedback">
+            <div>Kontaktdaten ist ein Pflichtfeld</div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Aufgaben</label>
+          <p-editor formControlName="obligations" [style]="{'height':'320px'}"
+            [ngClass]="{ 'is-invalid': submitted && f.obligations.errors }"></p-editor>
+          <div *ngIf="submitted && f.obligations.errors" class="invalid-feedback">
+            <div>Kontaktdaten ist ein Pflichtfeld</div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Filiale anlegen</button>
+    </form>
+  </div>
+</app-nav-menu>

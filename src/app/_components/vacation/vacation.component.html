@@ -49,7 +49,7 @@
             </tr>
           </thead>
           <tbody>
-            <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" [minDate]="minDate" [outsideDays]="collapsed">
+            <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" [minDate]="minDate" >
             </ngb-datepicker>
             
             <ng-template #t let-date let-focused="focused">

@@ -12,7 +12,6 @@
     </div>
   </div>
   <div class="container-fluid" style="margin-top: 1em;">
-
     <div class="row" style="margin-top: 1em;">
       <table class="table table-striped">
         <thead>
@@ -30,19 +29,20 @@
             <td>{{user.email}}</td>
             <td>
               <div class="input-group-prepend">
-                <div (click)="redirect('benutzer/' + user.id);" class="input-group-text"><i class="fas fa-user"></i></div>
-                <div (click)="redirect('benutzer/edit/'+ user.id);" class="input-group-text"><i class="fas fa-user-edit"></i></div>
-                <div *ngIf="user.username == null;else changeActiveTemplate" (click)="resendEmail(user.id);"                  
-                  class="input-group-text"><i 
-                  [className]="user.active ? 'fas fa-paper-plane text-danger' : 'fas fa-paper-plane text-success'"
-                  ></i></div>
+                <div (click)="redirect('benutzer/' + user.id);" class="input-group-text"><i class="fas fa-user"></i>
+                </div>
+                <div (click)="redirect('benutzer/edit/'+ user.id);" class="input-group-text"><i
+                    class="fas fa-user-edit"></i></div>
+                <div *ngIf="user.username == null;else changeActiveTemplate" (click)="resendEmail(user.id);"
+                  class="input-group-text"><i
+                    [className]="user.active ? 'fas fa-paper-plane text-danger' : 'fas fa-paper-plane text-success'"></i>
+                </div>
                 <ng-template #changeActiveTemplate>
                   <div (click)="changeActive(user.id);" class="input-group-text"><i
                       [className]="user.active ? 'fas fa-lock text-success' : 'fas fa-unlock-alt text-danger'"></i>
                   </div>
                 </ng-template>
               </div>
-
             </td>
           </tr>
         </tbody>

@@ -1,3 +1,4 @@
+import { BranchUser } from './../_models/branchUser';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,41 +12,48 @@ import { User } from '../_models/User';
 })
 export class UserService {
 
-  constructor(private http: HttpClient,private g: Globals) {
+  constructor(private http: HttpClient, private g: Globals) {
   }
-  all(){
-    return this.http.get<User[]>(this.g.apiUrl+ `users/getAll`);
+
+  all() {
+    return this.http.get<User[]>(this.g.apiUrl + `users/getAll`);
   }
 
   getById(id: number) {
-    return this.http.get<User>(this.g.apiUrl+ `users/`+ id);
+    return this.http.get<User>(this.g.apiUrl + `users/` + id);
   }
 
-  changeActive(id){
-    return this.http.get<User>(this.g.apiUrl+'users/changeActive/'+id);
+  changeActive(id) {
+    return this.http.get<User>(this.g.apiUrl + 'users/changeActive/' + id);
   }
 
-  regRequest(u: User){
-    return this.http.put<User>(this.g.apiUrl+'users/regRequest', u);
+  regRequest(u: User) {
+    return this.http.put<User>(this.g.apiUrl + 'users/regRequest', u);
   }
 
-  edit(u: User){
-    return this.http.put<User>(this.g.apiUrl+'users/edit', u);
+  edit(u: User) {
+    return this.http.put<User>(this.g.apiUrl + 'users/edit', u);
   }
 
-  checkAuthCode(code: string){
-    return this.http.get<User>(this.g.apiUrl+"users/checkAuthCode/"+ code);
+  checkAuthCode(code: string) {
+    return this.http.get<User>(this.g.apiUrl + 'users/checkAuthCode/' + code);
   }
 
-  completReg(u: User){    
-    return this.http.put<User>(this.g.apiUrl+'users/completReg', u);
+  completReg(u: User) {
+    return this.http.put<User>(this.g.apiUrl + 'users/completReg', u);
   }
 
-  resendEmail(id: string){
-    return this.http.get<User>(this.g.apiUrl+'users/resendMail/'+id);
+  resendEmail(id: string) {
+    return this.http.get<User>(this.g.apiUrl + 'users/resendMail/' + id);
   }
 
-  
+  getAllWithBranches(id) {
+    return this.http.get<User[]>(this.g.apiUrl + 'users/getWithBranches/' + id);
+  }
+
+  addOrRemoveBranch(bu: BranchUser) {
+    return this.http.post<any>(this.g.apiUrl + `users/addOrRemoveBranch`, bu);
+  }
 }
 
 

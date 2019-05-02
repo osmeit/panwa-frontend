@@ -1,11 +1,11 @@
+import { BranchService } from './../../_services/branch.service';
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import {Router} from "@angular/router"
+import { Branch } from 'src/app/_models/branch';
 
-//satic for test -> redirekt to branch
-const states = ['test','abcd','klapperhof','longerich','buchfrost','monheim'];
 
 @Component({
   selector: 'app-branch',
@@ -16,24 +16,44 @@ const states = ['test','abcd','klapperhof','longerich','buchfrost','monheim'];
 export class BranchComponent implements OnInit {
   
   public model: any;
-
-  constructor(config: NgbTypeaheadConfig, private router: Router) {
-    // customize default values of typeaheads used by this component tree
+  branches: Branch[]= [];
+  searchText;
+  addres: string;
+  obligations: string;
+  
+  constructor(config: NgbTypeaheadConfig,
+     private router: Router,
+     private branchService: BranchService) {
     config.showHint = true;
   }
-
-  search = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map(term => term.length < 2 ? []
-        : states.filter(v => v.toLowerCase().startsWith(term.toLocaleLowerCase())).splice(0, 10))
-    )
-
+  
   ngOnInit() {
+    this.branchService.all().subscribe(br => {
+      this.branches = br;      
+    });
   }
 
-  red(){
-    this.router.navigate(['filiale/id']);
+  redirect(path) {
+    this.router.navigate([path]);
   }
+
+  AuthLvl(lvl: number){
+    let user = JSON.parse(localStorage.getItem('currentUser'))    
+    switch (user['role']) {
+      case "Admin":
+        return true;
+
+      case "Moderator":
+        if(lvl <= 1) return true;
+        return false; 
+        
+      case "User":
+        if(lvl == 0) return true;
+        return false;
+    
+      default:
+        break;
+    }
+  }
+
 }

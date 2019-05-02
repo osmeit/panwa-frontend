@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from './../../_services/authentication.service';
+import { Meta } from '@angular/platform-browser';
+import { Globals } from 'src/app/globals';
 
 @Component({
   selector: 'login',
@@ -16,17 +18,25 @@ export class LoginComponent implements OnInit {
     submitted = false;
     returnUrl: string;
     error = '';
+    g: Globals;
 
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private meta: Meta
     ) {
+        meta.addTag({property: 'og:image:width', content: '1200'});
+        meta.addTag({property: 'og:image:height', content: '628'});
+        meta.addTag({property: 'og:title', content: 'PANWA - Planverwaltung Online'});
+        meta.addTag({property: 'og:image', content: 'https://panwa.info/assets/og.jpg'});
+        meta.addTag({property: 'og:url', content: 'https://panwa.info/'});
+
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);
-        } 
+        }
     }
 
     ngOnInit() {
@@ -63,6 +73,6 @@ export class LoginComponent implements OnInit {
     }
 
 
-    
+
 
 }

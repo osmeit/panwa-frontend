@@ -49,7 +49,6 @@ export class UserEditComponent implements OnInit {
       });
           this.codeValid = true;
           this.user = data;
-          console.log(this.user);
           
       },
       error => {
@@ -88,7 +87,6 @@ export class UserEditComponent implements OnInit {
         },
         error => {
             this.error = error;
-            console.log(error);
             this.loading = false;
         });
         

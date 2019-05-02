@@ -7,16 +7,20 @@ import { HomeComponent } from './_components/home/home.component';
 import { ProfileComponent } from './_components/profile/profile.component';
 import { VacationComponent } from './_components/vacation/vacation.component';
 import { SickComponent } from './_components/sick/sick.component';
-import { UserComponent } from './_components/user/user.component';
+import { UserComponent } from './_components/user_managment/user/user.component';
 import { BranchComponent } from './_components/branch/branch.component';
-import { BranchDetailComponent } from './_components/branch-detail/branch-detail.component';
-import { UserAddComponent } from './_components/user-add/user-add.component';
-import { UserRegComponent } from './_components/user-reg/user-reg.component';
-import { UserInfoComponent } from './_components/user-info/user-info.component';
+import { UserAddComponent } from './_components/user_managment/user-add/user-add.component';
+import { UserRegComponent } from './_components/user_managment/user-reg/user-reg.component';
+import { UserInfoComponent } from './_components/user_managment/user-info/user-info.component';
+import { UserEditComponent } from './_components/user_managment/user-edit/user-edit.component';
+import { BranchAddComponent } from './_components/branch-add/branch-add.component';
+import { BranchEditComponent } from './_components/branch-edit/branch-edit.component';
+import { BranchUserSelectComponent } from './_components/branch-user-select/branch-user-select.component';
+
+
 
 import { AuthGuard } from './_guards/auth.guard';
 import { Role } from './_models/role';
-import { UserEditComponent } from './_components/user-edit/user-edit.component';
 
 const routes: Routes = [
   {
@@ -77,8 +81,18 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'filiale/id',
-    component: BranchDetailComponent,
+    path: 'filiale/add',
+    component: BranchAddComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'filiale/edit/:id',
+    component: BranchEditComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'filiale/user-select/:id',
+    component: BranchUserSelectComponent,
     canActivate: [AuthGuard]
   }];
 
