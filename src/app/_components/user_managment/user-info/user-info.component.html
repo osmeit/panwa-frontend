@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <div (click)="changeStateOfUserDataBool();" class="row">
+            <div (click)="changeStateOfUserDataBool()" class="row">
               <div class="col-6">
                 <div class="text-left">Allgemeine Daten</div>
               </div>
@@ -20,11 +20,11 @@
               <div class="form-row">
                 <div class="col-md-4 mb-3">
                   <label>Vorname</label>
-                  <input type="text" [value]="u?.firstName" class="form-control" placeholder="Vorname" readonly>                  
+                  <input type="text" [value]="u?.firstName" class="form-control" placeholder="Vorname" readonly />
                 </div>
                 <div class="col-md-4 mb-3">
                   <label>Nachname</label>
-                  <input type="text" [value]="u?.lastName"  class="form-control" placeholder="Nachname" readonly>
+                  <input type="text" [value]="u?.lastName" class="form-control" placeholder="Nachname" readonly />
                 </div>
                 <div class="col-md-4 mb-3">
                   <label>Benutzername</label>
@@ -32,34 +32,56 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">@</span>
                     </div>
-                    <input type="text" [value]="u?.username"  class="form-control" placeholder="Benutzername"readonly>                    
+                    <input type="text" [value]="u?.username" class="form-control" placeholder="Benutzername" readonly />
                   </div>
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-md-6 mb-3">
                   <label>Anschrift</label>
-                  <input type="text" [value]="u?.address"  class="form-control" placeholder="Straße und Nr." readonly>                  
+                  <input type="text" [value]="u?.address" class="form-control" placeholder="Straße und Nr." readonly />
                 </div>
                 <div class="col-md-3 mb-3">
                   <label>Stadt</label>
-                  <input type="text" [value]="u?.city"  class="form-control" placeholder="Stadt" readonly>
+                  <input type="text" [value]="u?.city" class="form-control" placeholder="Stadt" readonly />
                 </div>
                 <div class="col-md-3 mb-3">
                   <label>PLZ</label>
-                  <input type="text" [value]="u?.postcode"  class="form-control" placeholder="PLZ" readonly>
+                  <input type="text" [value]="u?.postcode" class="form-control" placeholder="PLZ" readonly />
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-md-6 mb-3">
                   <label>Telefonnummer</label>
-                  <input type="text" (click)="copyInputMessage(usertel)" [value]="u?.phone"  class="form-control" placeholder="Telefonnummer" #usertel readonly>
+                  <input type="text" (click)="copyInputMessage(usertel)" [value]="u?.phone" class="form-control"
+                    placeholder="Telefonnummer" #usertel readonly />
                 </div>
                 <div class="col-md-6 mb-3">
                   <label>E-Mail</label>
-                  <input type="text" (click)="copyInputMessage(useremail)" [value]="u?.email"  class="form-control" placeholder="E-Mail" #useremail readonly>
+                  <input type="text" (click)="copyInputMessage(useremail)" [value]="u?.email" class="form-control"
+                    placeholder="E-Mail" #useremail readonly />
                 </div>
-              </div>              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 1em;">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">Aktive Filialen</div>
+          <div class="card-body">
+            <div class="card-columns">
+              <div *ngFor="let item of u.branchs">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">{{item.branch.name}}</h5>
+                    <p class="card-text" [innerHTML]="item.branch.addres">
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

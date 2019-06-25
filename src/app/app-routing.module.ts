@@ -8,14 +8,14 @@ import { ProfileComponent } from './_components/profile/profile.component';
 import { VacationComponent } from './_components/vacation/vacation.component';
 import { SickComponent } from './_components/sick/sick.component';
 import { UserComponent } from './_components/user_managment/user/user.component';
-import { BranchComponent } from './_components/branch/branch.component';
+import { BranchComponent } from './_components/branch_managment/branch/branch.component';
 import { UserAddComponent } from './_components/user_managment/user-add/user-add.component';
 import { UserRegComponent } from './_components/user_managment/user-reg/user-reg.component';
 import { UserInfoComponent } from './_components/user_managment/user-info/user-info.component';
 import { UserEditComponent } from './_components/user_managment/user-edit/user-edit.component';
-import { BranchAddComponent } from './_components/branch-add/branch-add.component';
-import { BranchEditComponent } from './_components/branch-edit/branch-edit.component';
-import { BranchUserSelectComponent } from './_components/branch-user-select/branch-user-select.component';
+import { BranchAddComponent } from './_components/branch_managment/branch-add/branch-add.component';
+import { BranchEditComponent } from './_components/branch_managment/branch-edit/branch-edit.component';
+import { BranchUserSelectComponent } from './_components/branch_managment/branch-user-select/branch-user-select.component';
 
 
 

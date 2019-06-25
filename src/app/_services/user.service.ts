@@ -51,6 +51,10 @@ export class UserService {
     return this.http.get<User[]>(this.g.apiUrl + 'users/getWithBranches/' + id);
   }
 
+  getUserWithAllBranches(id) {
+    return this.http.get<User>(this.g.apiUrl + 'users/getUserWithAllBranches/' + id);
+  }
+
   addOrRemoveBranch(bu: BranchUser) {
     return this.http.post<any>(this.g.apiUrl + `users/addOrRemoveBranch`, bu);
   }

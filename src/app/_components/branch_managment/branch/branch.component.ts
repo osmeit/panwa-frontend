@@ -1,9 +1,9 @@
-import { BranchService } from './../../_services/branch.service';
+import { BranchService } from '../../../_services/branch.service';
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-import {Router} from "@angular/router"
+import {Router} from '@angular/router';
 import { Branch } from 'src/app/_models/branch';
 
 
@@ -14,22 +14,22 @@ import { Branch } from 'src/app/_models/branch';
   providers: [NgbTypeaheadConfig]
 })
 export class BranchComponent implements OnInit {
-  
+
   public model: any;
-  branches: Branch[]= [];
+  branches: Branch[] = [];
   searchText;
   addres: string;
   obligations: string;
-  
+
   constructor(config: NgbTypeaheadConfig,
      private router: Router,
      private branchService: BranchService) {
     config.showHint = true;
   }
-  
+
   ngOnInit() {
     this.branchService.all().subscribe(br => {
-      this.branches = br;      
+      this.branches = br;
     });
   }
 
@@ -37,20 +37,20 @@ export class BranchComponent implements OnInit {
     this.router.navigate([path]);
   }
 
-  AuthLvl(lvl: number){
-    let user = JSON.parse(localStorage.getItem('currentUser'))    
+  AuthLvl(lvl: number) {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
     switch (user['role']) {
-      case "Admin":
+      case 'Admin':
         return true;
 
-      case "Moderator":
-        if(lvl <= 1) return true;
-        return false; 
-        
-      case "User":
-        if(lvl == 0) return true;
+      case 'Moderator':
+        if (lvl <= 1) { return true; }
         return false;
-    
+
+      case 'User':
+        if (lvl === 0) { return true; }
+        return false;
+
       default:
         break;
     }

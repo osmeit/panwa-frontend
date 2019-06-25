@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserInfoComponent implements OnInit {
   userData: boolean;
+  userBranches: boolean;
   u: User;
   id: any;
 
@@ -20,20 +21,25 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit() {
     this.userData = true;
+    this.userBranches = true;
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
-    this.userService.getById(this.id).subscribe(
+    this.userService.getUserWithAllBranches(this.id).subscribe(
       data => {
-        this.u = data;          
-      });      
+        this.u = data;
+        console.log(this.u);
+    });
   }
 
-  changeStateOfUserDataBool(){
-    this.userData = !this.userData;     
+  changeStateOfUserDataBool() {
+    this.userData = !this.userData;
   }
 
-  copyInputMessage(inputElement){
+  changeStateOfUserBranchesBool() {
+    this.userBranches = !this.userBranches;
+  }
+  copyInputMessage(inputElement) {
     inputElement.select();
     document.execCommand('copy');
     inputElement.setSelectionRange(0, 0);

@@ -1,6 +1,6 @@
-import { BranchUser } from './../../_models/branchUser';
+import { BranchUser } from '../../../_models/branchUser';
 import { Branch } from 'src/app/_models/branch';
-import { UserService } from './../../_services/user.service';
+import { UserService } from '../../../_services/user.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { User } from 'src/app/_models/User';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -36,7 +36,7 @@ export class BranchUserSelectComponent implements OnInit {
           this.users = users;
           this.users.forEach(element => {
             element.branchs.forEach(item => {
-              if (item.branchId == this.branchid) { element.password = '1'; }
+              if (item.branchId === this.branchid) { element.password = '1'; }
             });
           });
         });
