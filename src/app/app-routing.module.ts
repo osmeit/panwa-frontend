@@ -21,6 +21,8 @@ import { BranchUserSelectComponent } from './_components/branch_managment/branch
 
 import { AuthGuard } from './_guards/auth.guard';
 import { Role } from './_models/role';
+import { ShowWorklayerComponent } from './_components/worklayer_managment/show-worklayer/show-worklayer.component';
+import { AddWorklayerComponent } from './_components/worklayer_managment/add-worklayer/add-worklayer.component';
 
 const routes: Routes = [
   {
@@ -93,6 +95,16 @@ const routes: Routes = [
   {
     path: 'filiale/user-select/:id',
     component: BranchUserSelectComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'worklayers',
+    component: ShowWorklayerComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'worklayers/add',
+    component: AddWorklayerComponent,
     canActivate: [AuthGuard]
   }];
 

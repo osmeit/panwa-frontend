@@ -1,0 +1,33 @@
+<app-nav-menu>
+  <div class="text-right">
+    <button type="button" class="btn btn-primary" style="margin-top: 2em" (click)="addWorkSet()">
+      Sicht hinzufügen
+    </button>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Bezeichnung</label>
+      <input type="text" class="form-control" placeholder="Kurze Beschreibung über Arbeitsset"
+        [(ngModel)]="workLayer.name" [ngModelOptions]="{ standalone: true }" />
+    </div>
+    <div *ngFor="let item of workLayer.workSet" class="form-group">
+      <div class="row">
+        <div class="col-md-4">
+          <label>Wochentag</label>
+          <select class="form-control" [(ngModel)]="item.day" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let d of days" [ngValue]="d.id">{{d.name}}</option>
+          </select>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+          <ngb-timepicker [(ngModel)]="item.startPicker" [ngModelOptions]="{standalone: true}"></ngb-timepicker>
+        </div>
+        <div class="col-md-3">
+          <ngb-timepicker [(ngModel)]="item.endPicker" [ngModelOptions]="{standalone: true}"></ngb-timepicker>
+        </div>
+      </div>
+      <hr style="width: 100%; height: 1px; " />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</app-nav-menu>
