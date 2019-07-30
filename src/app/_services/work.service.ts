@@ -13,7 +13,11 @@ export class WorkService {
   }
 
   getAll() {
-    return this.http.get<WorkLayer[]>(this.g.apiUrl + `work/GetAll`);
+    return this.http.get<WorkLayer[]>(this.g.apiUrl + `work/getAll`);
+  }
+
+  getAllWithSets() {
+    return this.http.get<WorkLayer[]>(this.g.apiUrl + `work/getAllWithSets`);
   }
 
   add(wl: WorkLayer) {

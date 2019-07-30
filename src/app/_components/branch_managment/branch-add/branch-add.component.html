@@ -2,7 +2,7 @@
   <div class="container-fluid" style="margin-top: 2em;">
     <form [formGroup]="branchAddForm" (ngSubmit)="onSubmit()">
       <div class="form-row">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
           <label>Name</label>
           <input type="email" class="form-control" id="name" formControlName="name"
             placeholder="Name/Bezeichnung eingeben" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" required>
@@ -10,7 +10,7 @@
             <div *ngIf="f.name.errors.required">Name/Bezeichnung ist ein Pflichtfeld</div>
           </div>
         </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
           <label>Kontaktperson</label>
           <p-autoComplete [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" formControlName="contactUser"
             [suggestions]="filteredusers" (completeMethod)="filterUsersSingle($event)" [size]="30" [minLength]="1"
@@ -21,6 +21,17 @@
             <div>Kontaktperson ist ein Pflichtfeld</div>
           </div>
         </div>
+        <div class="col-md-4 mb-3">
+            <label>Work Layer</label>
+            <p-autoComplete [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" formControlName="workLayer"
+              [suggestions]="filteredWorkLayers" (completeMethod)="filterWorkLayerSingle($event)" [size]="30" [minLength]="1"
+              placeholder="Kontaktperson" field="name" [dropdown]="false"
+              [ngClass]="{ 'is-invalid': submitted && f.workLayer.errors }">
+            </p-autoComplete>
+            <div *ngIf="submitted && f.workLayer.errors" class="invalid-feedback">
+              <div>Work Layer ist ein Pflichtfeld</div>
+            </div>
+          </div>
       </div>
       <div class="form-row">
         <div class="col-md-6 mb-3">

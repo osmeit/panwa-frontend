@@ -24,4 +24,8 @@ export class BranchService {
   edit(b: Branch) {
     return this.http.put<Branch>(this.g.apiUrl + 'branchs/edit', b);
   }
+
+  editWorkLayer(b: Branch) {
+    return this.http.put<Branch>(this.g.apiUrl + 'branchs/editWorkLayer', b);
+  }
 }

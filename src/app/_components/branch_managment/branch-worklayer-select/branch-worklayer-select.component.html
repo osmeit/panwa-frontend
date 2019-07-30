@@ -1,0 +1,43 @@
+<app-nav-menu>
+  <div class="card" style="margin-top: 2em">
+
+    <div class="card-header">
+      <div class="row">
+        <div class="col-10 align-middle text-center ">
+            Filiale
+        </div>
+        <div class="col-2 text-right">
+            <button type="button" class="btn btn-primary" (click)="submit()">
+                Speichern
+              </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body text-center">
+      <h5 class="card-title" *ngIf="isReady">{{branch?.name}} - Aktuell verwented wird <i class="fas fa-arrow-right"></i> {{branch?.workLayer.name}}</h5>
+    </div>
+    <div class="card-footer text-left">
+      <div class="row">
+        <div class="col-4">
+          <div class="list-group">
+            <a *ngFor="let item of workLayers" (click)="setWl(item)" class="list-group-item list-group-item-action">{{item.name}}</a>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="tab-content" id="nav-tabContent">
+            <table class="table table-striped" *ngIf="wl.workSet">
+              <tbody>
+                <tr *ngFor="let item of wl.workSet">
+                  <td>{{getDayString(item)}}</td>
+                  <td>{{convertTime(item.startTime)}}</td>
+                  <td>{{convertTime(item.endTime)}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-nav-menu>
+

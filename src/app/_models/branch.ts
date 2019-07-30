@@ -1,11 +1,14 @@
 import { BranchUser } from './branchUser';
 import { User } from './user';
+import { WorkLayer } from './work-layer';
 export class Branch {
-    id: number; 
-    
+    id: number;
+
     name: string;
 
     contactUser: User;
+
+    workLayer: WorkLayer;
 
     addres: string;
 

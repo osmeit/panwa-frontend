@@ -37,6 +37,7 @@ import { BranchEditComponent } from './_components/branch_managment/branch-edit/
 import { BranchUserSelectComponent } from './_components/branch_managment/branch-user-select/branch-user-select.component';
 import { ShowWorklayerComponent } from './_components/worklayer_managment/show-worklayer/show-worklayer.component';
 import { AddWorklayerComponent } from './_components/worklayer_managment/add-worklayer/add-worklayer.component';
+import { BranchWorklayerSelectComponent } from './_components/branch_managment/branch-worklayer-select/branch-worklayer-select.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { AddWorklayerComponent } from './_components/worklayer_managment/add-wor
     BranchEditComponent,
     BranchUserSelectComponent,
     ShowWorklayerComponent,
-    AddWorklayerComponent
+    AddWorklayerComponent,
+    BranchWorklayerSelectComponent
   ],
   imports: [
     BrowserModule,

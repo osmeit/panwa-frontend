@@ -7,6 +7,6 @@ export class WorkSet {
   day: Number;
   startTime: String;
   endTime: String;
-  startPicker = {hour: 10, minute: 0};
-  endPicker = {hour: 18, minute: 0};
+  startPicker = { hour: 10, minute: 0 };
+  endPicker = { hour: 18, minute: 0 };
 }

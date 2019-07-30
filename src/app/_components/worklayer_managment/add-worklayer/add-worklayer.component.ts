@@ -38,20 +38,34 @@ export class AddWorklayerComponent implements OnInit {
     this.workLayer.workSet.push(new WorkSet());
   }
 
+  removeWorkSet(workSet: WorkSet) {
+    if (this.workLayer.workSet.length !== 1) {
+    this.workLayer.workSet.splice(this.workLayer.workSet.indexOf(workSet), 1);
+    }
+  }
+
   onSubmit() {
+    console.log(this.workLayer);
+
+    if (this.workLayer.name == null) {
+      this.submitted = true;
+      return;
+    }
+
     this.workLayer.workSet.forEach(element => {
       element.startTime = '0001.01.01 ' + element.startPicker.hour + ':' + element.startPicker.minute + ':00';
       element.endTime = '0001.01.01 ' + element.endPicker.hour + ':' + element.endPicker.minute + ':00';
+      if (element.day == null) {
+        this.submitted = true;
+        return;
+      }
     });
 
     this.workService.add(this.workLayer).subscribe(
-      data => {
-        console.log(data);
+      () => {
         this.router.navigate([this.returnUrl]);
       },
-      error => {
-        // this.loading = false;
-      }
+      () => {}
     );
   }
 
