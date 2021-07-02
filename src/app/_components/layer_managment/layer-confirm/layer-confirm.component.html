@@ -1,0 +1,45 @@
+<app-nav-menu>
+  <div class="card" style="margin-top: 2em" *ngIf="layer">
+    <div class="card-header">
+      Abschluss am {{ getDate(layer.startTime) }} von
+      {{ getTime(layer.startTime) }} {{ getTime(layer.endTime) }} im KW{{
+        layer.week
+      }}
+    </div>
+    <div class="card-body">
+      <div class="form-row">
+        <div class="col-md-4 mb-4">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Anfangsbestand"
+            aria-label="Anfangsbestand"
+            [(ngModel)]="layer.startStock"
+            aria-describedby="startStock"
+          />
+        </div>
+        <div class="col-md-4 mb-4">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Endsbestand"
+            aria-label="Endsbestand"
+            [(ngModel)]="layer.endStock"
+            aria-describedby="endStock"
+          />
+        </div>
+        <div class="col-md-4 mb-4">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Kassenabschlussnummer"
+            aria-label="Kassenabschlussnummer"
+            [(ngModel)]="layer.cashDeskNumber"
+            aria-describedby="cashdesknumer"
+          />
+        </div>        
+      </div>
+      <button type="submit" class="btn btn-primary" (click)='save()' *ngIf="layer.startStock && layer.endStock && layer.cashDeskNumber">Speichern</button>
+    </div>
+  </div>
+</app-nav-menu>

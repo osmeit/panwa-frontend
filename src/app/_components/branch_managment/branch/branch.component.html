@@ -16,20 +16,23 @@
     <div class="card" *ngFor="let branch of (branches | filter: searchText)" style="margin-top: 1em;">
       <div class="card-header">
         <div class="row">
-          <div class="col-2" *ngIf="AuthLvl(1)">
+          <div class="col-3">
             <div class="input-group-prepend">
-              <div (click)="redirect('filiale/edit/' + branch.id)" class="input-group-text">
+              <div (click)="redirect('filiale/edit/' + branch.id)" class="input-group-text" *ngIf="AuthLvl(1)">
                 <i class="fas fa-edit"></i>
               </div>
-              <div (click)="redirect('filiale/user-select/' + branch.id)" class="input-group-text">
+              <div (click)="redirect('filiale/user-select/' + branch.id)" class="input-group-text" *ngIf="AuthLvl(1)">
                 <i class="fas fa-users"></i>
               </div>
-              <div (click)="redirect('filiale/worklayer-select/' + branch.id)" class="input-group-text">
+              <div (click)="redirect('filiale/worklayer-select/' + branch.id)" class="input-group-text" *ngIf="AuthLvl(1)">
                 <i class="fas fa-folder-open"></i>
+              </div>
+              <div (click)="redirect('filiale/view/' + branch.id)" class="input-group-text" *ngIf="AuthLvl(0)">
+                <i class="fas fa-briefcase"></i>
               </div>
             </div>
           </div>
-          <div class="col-10">
+          <div class="col-9">
             {{ branch.name }}
           </div>
         </div>

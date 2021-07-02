@@ -1,4 +1,4 @@
-import { WorkLayer } from './work-layer';
+import { WorkLayer } from "./work-layer";
 
 export class WorkSet {
   id: Number;

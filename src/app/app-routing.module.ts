@@ -24,6 +24,8 @@ import { Role } from './_models/role';
 import { ShowWorklayerComponent } from './_components/worklayer_managment/show-worklayer/show-worklayer.component';
 import { AddWorklayerComponent } from './_components/worklayer_managment/add-worklayer/add-worklayer.component';
 import { BranchWorklayerSelectComponent } from './_components/branch_managment/branch-worklayer-select/branch-worklayer-select.component';
+import { BranchViewComponent } from './_components/branch_managment/branch-view/branch-view.component';
+import { LayerConfirmComponent } from './_components/layer_managment/layer-confirm/layer-confirm.component';
 
 const routes: Routes = [
   {
@@ -99,8 +101,18 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'filiale/view/:id',
+    component: BranchViewComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'filiale/worklayer-select/:id',
     component: BranchWorklayerSelectComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'layer/confirm/:id',
+    component: LayerConfirmComponent,
     canActivate: [AuthGuard]
   },
   {

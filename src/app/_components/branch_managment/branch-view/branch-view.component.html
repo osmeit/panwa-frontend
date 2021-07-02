@@ -1,0 +1,93 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Bestätigung</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        Bestätigen Sie die Arbeit am {{ getDate(usedLayer.startTime) }} von {{ getTime(usedLayer.startTime) }} bis {{ getTime(usedLayer.endTime) }} ?
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-danger" (click)="modal.close('Cross click')">Abbrechen</button>
+    <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">Ja</button>
+  </div>
+</ng-template>
+<app-nav-menu>
+  <div class="card text-center" style="margin-top: 2em">
+    <div class="card-header">
+      Kalenderwoche<br />
+
+      <i
+        class="fas fa-chevron-left"
+        style="margin-right: 2em"
+        (click)="updateCalenderWeek(-1)"
+        *ngIf="leftactive"
+      ></i>
+      {{ activeWeek }}
+      <i
+        class="fas fa-chevron-right"
+        style="margin-left: 2em"
+        (click)="updateCalenderWeek(1)"
+        *ngIf="rightactive"
+      ></i>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Mitarbeiter</th>
+              <th scope="col">Datum</th>
+              <th scope="col">Anfang</th>
+              <th scope="col">Ende</th>
+              <th scope="col">Anfangs-</th>
+              <th scope="col">Endsbestand</th>
+              <th scope="col">Abschlussnummer</th>
+              <th scope="col">OP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let layer of layers">
+              <td>
+                <div *ngIf="layer.user">
+                  {{ layer.user.firstName }} {{ layer.user.lastName }}
+                </div>
+                <div *ngIf="!layer.user">
+                  <button class="btn btn-lg btn-outline-primary" (click)="open(content, layer)">Auswählen</button>
+                </div>
+              </td>
+              <td>{{ getDate(layer.startTime) }}</td>
+              <td>{{ getTime(layer.startTime) }}</td>
+              <td>{{ getTime(layer.endTime) }}</td>
+              <td>
+                <div>{{ layer.startStock }}</div>
+              </td>
+              <td>
+                <div>{{ layer.endStock }}</div>
+              </td>
+              <td>
+                <div>{{ layer.cashDeskNumber }}</div>
+              </td>
+              <td>
+                <div *ngIf="layer.user && layer.updateBy != 0" (click)="redirect('layer/confirm/'+layer.id)">
+                  <div *ngIf="layer.user.id == userinfo.id">
+                    <div class="input-group-prepend" >
+                      <div class="input-group-text">
+                        <i class="far fa-check-square"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>  
+</app-nav-menu>

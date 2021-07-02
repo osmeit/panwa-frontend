@@ -1,18 +1,18 @@
-import { BranchUser } from './branchUser';
-import { User } from './user';
-import { WorkLayer } from './work-layer';
+import { BranchUser } from "./branchUser";
+import { User } from "./user";
+import { WorkLayer } from "./work-layer";
 export class Branch {
-    id: number;
+  id: number;
 
-    name: string;
+  name: string;
 
-    contactUser: User;
+  contactUser: User;
 
-    workLayer: WorkLayer;
+  workLayer: WorkLayer;
 
-    addres: string;
+  addres: string;
 
-    obligations: string;
+  obligations: string;
 
-    users: BranchUser[];
+  users: BranchUser[];
 }

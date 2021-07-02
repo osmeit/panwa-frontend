@@ -8,8 +8,8 @@
     <div class="list-group list-group-flush">
       <a (click)="redirect('');" class="list-group-item list-group-item-action bg-light">Dashboard</a>
       <a (click)="redirect('filiale');" class="list-group-item list-group-item-action bg-light">Meine Fililen</a>
-      <a (click)="redirect('urlaub');" class="list-group-item list-group-item-action bg-light">Urlaub</a>
-      <a (click)="redirect('krank');" class="list-group-item list-group-item-action bg-light">Karnkschreibung</a>
+      <!--<a (click)="redirect('urlaub');" class="list-group-item list-group-item-action bg-light">Urlaub</a> -->
+      <!--<a (click)="redirect('krank');" class="list-group-item list-group-item-action bg-light">Karnkschreibung</a> -->
       <a (click)="redirect('benutzer');" *ngIf="AuthLvl(1);" class="list-group-item list-group-item-action bg-light">Benutzer</a>
       <a (click)="redirect('worklayers');" *ngIf="AuthLvl(1);" class="list-group-item list-group-item-action bg-light">Work Layers</a>
     </div>
@@ -34,7 +34,7 @@
               {{user.firstName}} {{user.lastName}}
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" (click)="redirect('profile_edit');">Profil bearbeiten</a>
+              <!--<a class="dropdown-item" (click)="redirect('profile_edit');">Profil bearbeiten</a>-->
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" (click)="logout();">Abmelden</a>
             </div>

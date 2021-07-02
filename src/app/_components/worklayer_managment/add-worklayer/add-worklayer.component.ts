@@ -26,8 +26,8 @@ export class AddWorklayerComponent implements OnInit {
     {id: 3, name: 'Mittwoch'},
     {id: 4, name: 'Donnerstag'},
     {id: 5, name: 'Freitag'},
-    {id: 4, name: 'Samstag'},
-    {id: 4, name: 'Sonntag'},
+    {id: 6, name: 'Samstag'},
+    {id: 7, name: 'Sonntag'},
   ];
     this.workLayer = new WorkLayer();
     this.workLayer.workSet = [];

@@ -1,43 +1,45 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditorModule } from 'primeng/editor';
-import { AutoCompleteModule } from 'primeng/autocomplete';
-import {InputSwitchModule} from 'primeng/inputswitch';
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from "@angular/core";
+import { AppRoutingModule } from "./app-routing.module";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { Ng2SearchPipeModule } from "ng2-search-filter";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { EditorModule } from "primeng/editor";
+import { AutoCompleteModule } from "primeng/autocomplete";
+import { InputSwitchModule } from "primeng/inputswitch";
 
-import { JwtInterceptor } from './_helpers/jwt.interceptor';
-import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { JwtInterceptor } from "./_helpers/jwt.interceptor";
+import { ErrorInterceptor } from "./_helpers/error.interceptor";
 
+import { BranchService } from "./_services/branch.service";
+import { UserService } from "src/app/_services/user.service";
 
-import { BranchService } from './_services/branch.service';
-import { UserService } from 'src/app/_services/user.service';
+import { Globals } from "./globals";
 
-import { Globals } from './globals';
-
-import { AppComponent } from './app.component';
-import { HomeComponent } from './_components/home/home.component';
-import { LoginComponent } from './_components/login/login.component';
-import { NavMenuComponent } from './_components/nav-menu/nav-menu.component';
-import { ProfileComponent } from './_components/profile/profile.component';
-import { VacationComponent } from './_components/vacation/vacation.component';
-import { SickComponent } from './_components/sick/sick.component';
-import { UserComponent } from './_components/user_managment/user/user.component';
-import { BranchComponent } from './_components/branch_managment/branch/branch.component';
-import { UserAddComponent } from './_components/user_managment/user-add/user-add.component';
-import { UserRegComponent } from './_components/user_managment/user-reg/user-reg.component';
-import { UserInfoComponent } from './_components/user_managment/user-info/user-info.component';
-import { UserEditComponent } from './_components/user_managment/user-edit/user-edit.component';
-import { BranchAddComponent } from './_components/branch_managment/branch-add/branch-add.component';
-import { BranchEditComponent } from './_components/branch_managment/branch-edit/branch-edit.component';
-import { BranchUserSelectComponent } from './_components/branch_managment/branch-user-select/branch-user-select.component';
-import { ShowWorklayerComponent } from './_components/worklayer_managment/show-worklayer/show-worklayer.component';
-import { AddWorklayerComponent } from './_components/worklayer_managment/add-worklayer/add-worklayer.component';
-import { BranchWorklayerSelectComponent } from './_components/branch_managment/branch-worklayer-select/branch-worklayer-select.component';
+import { AppComponent } from "./app.component";
+import { HomeComponent } from "./_components/home/home.component";
+import { LoginComponent } from "./_components/login/login.component";
+import { NavMenuComponent } from "./_components/nav-menu/nav-menu.component";
+import { ProfileComponent } from "./_components/profile/profile.component";
+import { VacationComponent } from "./_components/vacation/vacation.component";
+import { SickComponent } from "./_components/sick/sick.component";
+import { UserComponent } from "./_components/user_managment/user/user.component";
+import { BranchComponent } from "./_components/branch_managment/branch/branch.component";
+import { UserAddComponent } from "./_components/user_managment/user-add/user-add.component";
+import { UserRegComponent } from "./_components/user_managment/user-reg/user-reg.component";
+import { UserInfoComponent } from "./_components/user_managment/user-info/user-info.component";
+import { UserEditComponent } from "./_components/user_managment/user-edit/user-edit.component";
+import { BranchAddComponent } from "./_components/branch_managment/branch-add/branch-add.component";
+import { BranchEditComponent } from "./_components/branch_managment/branch-edit/branch-edit.component";
+import { BranchUserSelectComponent } from "./_components/branch_managment/branch-user-select/branch-user-select.component";
+import { ShowWorklayerComponent } from "./_components/worklayer_managment/show-worklayer/show-worklayer.component";
+import { AddWorklayerComponent } from "./_components/worklayer_managment/add-worklayer/add-worklayer.component";
+import { BranchWorklayerSelectComponent } from "./_components/branch_managment/branch-worklayer-select/branch-worklayer-select.component";
+import { BranchViewComponent } from "./_components/branch_managment/branch-view/branch-view.component";
+import { LayerService } from "./_services/layer.service";
+import { LayerConfirmComponent } from './_components/layer_managment/layer-confirm/layer-confirm.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { BranchWorklayerSelectComponent } from './_components/branch_managment/b
     BranchUserSelectComponent,
     ShowWorklayerComponent,
     AddWorklayerComponent,
-    BranchWorklayerSelectComponent
+    BranchWorklayerSelectComponent,
+    BranchViewComponent,
+    LayerConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,15 +76,16 @@ import { BranchWorklayerSelectComponent } from './_components/branch_managment/b
     EditorModule,
     AutoCompleteModule,
     InputSwitchModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     Globals,
     UserService,
-    BranchService
+    BranchService,
+    LayerService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
